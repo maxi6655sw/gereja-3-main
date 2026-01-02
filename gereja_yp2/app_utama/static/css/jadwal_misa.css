@@ -1,0 +1,166 @@
+
+/* gambar diatas */
+.gambar.awal {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  min-height: 30vh;
+}
+.gambar.awal img {
+  width: 100%;
+  height: 30vh;
+  object-fit: cover;
+  backdrop-filter: blur(2px);
+}
+
+/* gambar diatas end */
+
+.jadwal_misa-container {
+  min-height: 75vh;
+  margin: 80px auto;
+  padding: 0 20px;
+  text-align: center;
+
+}
+
+.jadwal_misa-container h1 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.divider {
+  width: 100px;
+  height: 4px;
+  background-color: rgb(255, 196, 0);
+  margin: 0 auto 20px;
+  border-radius: 2px;
+  
+}
+
+.jadwal-wrapper {
+  background: #fff;
+  border-radius: 15px;
+  padding: 30px 40px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.jadwal-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  padding: 30px 7%;
+  gap: 40px;
+  background: #fff;
+  border-left: 8px solid rgb(255, 196, 0);
+  border-radius: 0;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  margin: 40px 0;
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-left-color 0.3s ease;
+}
+
+.jadwal-card:last-child {
+  border-bottom: none; /* Hilangkan garis pemisah terakhir */
+}
+
+.jadwal-card:hover {
+  transform: translateY(-3px);
+  border-left-color: rgb(255, 180, 0);
+}
+
+/* ====== Gambar ====== */
+.jadwal-image {
+  flex: 0 0 auto;
+}
+
+.jadwal-image img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* ====== Info Misa ====== */
+.jadwal-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.jadwal-info h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+
+.jadwal-detail p {
+  font-size: 1.1rem;
+  color: #444;
+  margin: 4px 0;
+}
+
+@media (max-width: 900px) {
+  .jadwal-card {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 16px;
+    border-left: none;
+    border-top: 4px solid rgb(255, 196, 0);
+  }
+}
+
+
+.jadwal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.jadwal-image {
+  flex: 0 0 auto; /* Pastikan gambar tidak meregang */
+}
+
+.jadwal-image img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.jadwal-info {
+  flex: 1; /* Isi ruang yang tersisa */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.jadwal-info h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+
+.jadwal-detail p {
+  font-size: 1.1rem;
+  color: #444;
+  margin: 4px 0;
+}
+
+.jadwal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* kontener dua end */

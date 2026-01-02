@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Beranda - Gereja YP II{% endblock %}
+
+{% block content %}
+<section class="container-satu">
+    <main class="content-tengah">
+        <h1>"TOTUS TUUS"</h1>
+    </main>
+</section>
+
+<section class="container-dua">
+  <h1>Jadwal Misa</h1>
+  <hr class="divider">
+
+  <div class="jadwal-wrapper">
+      <div class="jadwal-info">
+          <h2>Misa Mingguan</h2>
+          <div class="jadwal-detail">
+              <p><strong>Hari:</strong> Minggu</p>
+              <p><strong>Waktu:</strong> 07.00 WIB</p>
+          </div>
+      </div>
+
+      <div class="jadwal-image">
+          <img src="{% static 'img/foto-misa.png' %}" alt="Misa Mingguan">
+      </div>
+  </div>
+</section>
+
+<section class="container-tiga">
+  <h1>Kilas Berita</h1>
+  <hr class="divider">
+
+  <div class="berita-container">
+    {% for b in berita_acak %}
+    <div class="berita-card">
+      <div class="berita-img">
+        {% if b.gambar %}
+        <img src="{{ b.gambar.url }}" alt="{{ b.judul }}">
+        {% else %}
+        <img src="{% static 'img/default.jpg' %}" alt="Berita">
+        {% endif %}
+      </div>
+      <div class="berita-info">
+        <h2>{{ b.judul }}</h2>
+        <p class="ringkasan">{{ b.ringkasan|truncatechars:120 }}</p>
+        <a href="{% url 'detail_berita' slug=b.slug %}" class="btn-selengkapnya">Selengkapnya</a>
+      </div>
+    </div>
+    {% empty %}
+    <p>Belum ada berita tersedia.</p>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}
+`

@@ -1,0 +1,183 @@
+/* gambar diatas */
+.gambar.awal {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+.gambar.awal img {
+  width: 100%;
+  height: 30vh;
+  object-fit: cover;
+  backdrop-filter: blur(2px);
+}
+
+/* gambar diatas end */
+
+/* ====== Kilas Berita ====== */
+.kilas-berita-container {
+  min-height: 75vh !important;
+  margin: 50px auto !important;
+  text-align: center !important;
+  background-color: #ffffff !important;
+}
+
+.kilas-berita-container h1 {
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 10px !important;
+  color: #000 !important;
+  letter-spacing: 2px !important;
+}
+
+.subtitle {
+  font-size: 1rem !important;
+  color: #999 !important;
+  font-style: italic !important;
+  margin-bottom: 20px !important;
+  font-weight: 300 !important;
+}
+
+.divider {
+  width: 100px !important;
+  height: 4px !important;
+  background-color: rgb(255, 196, 0) !important;
+  margin: 0 auto 60px !important;
+  border-radius: 2px !important;
+}
+
+/* ====== Grid Berita ====== */
+.berita-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 30px !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+}
+
+/* ====== Card Berita ====== */
+.berita-card {
+  background: #fff !important;
+  border-radius: 0 !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.berita-card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+.berita-image {
+  width: 100% !important;
+  height: 200px !important;
+  overflow: hidden !important;
+}
+
+.berita-image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 0.3s ease !important;
+}
+
+.berita-card:hover .berita-image img {
+  transform: scale(1.1) !important;
+}
+
+/* Content Berita */
+.berita-content {
+  padding: 20px !important;
+  text-align: left !important;
+  flex-grow: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.berita-content .judul {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  color: #000 !important;
+  margin-bottom: 12px !important;
+  line-height: 1.4 !important;
+  min-height: 50px !important;
+}
+
+.meta {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 15px !important;
+  font-size: 0.85rem !important;
+  color: #999 !important;
+  margin-bottom: 12px !important;
+}
+
+.meta p {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+}
+
+.meta i {
+  color: #999 !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.ringkasan {
+  font-size: 0.9rem !important;
+  color: #666 !important;
+  margin-bottom: 15px !important;
+  line-height: 1.6 !important;
+  flex-grow: 1 !important;
+}
+
+.btn-selengkapnya {
+  display: inline-block !important;
+  background: transparent !important;
+  color: #d32f2f !important;
+  font-weight: 600 !important;
+  padding: 0 !important;
+  text-decoration: none !important;
+  font-size: 0.9rem !important;
+  transition: 0.3s !important;
+  align-self: flex-start !important;
+}
+
+.btn-selengkapnya:hover {
+  color: #b71c1c !important;
+  text-decoration: underline !important;
+}
+
+.no-berita {
+  grid-column: 1 / -1 !important;
+  text-align: center !important;
+  color: #999 !important;
+  font-size: 1.1rem !important;
+  padding: 40px !important;
+}
+
+/* ===== Responsif ===== */
+@media (max-width: 992px) {
+  .berita-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 25px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .kilas-berita-container h1 {
+    font-size: 2rem !important;
+  }
+
+  .subtitle {
+    font-size: 0.9rem !important;
+  }
+
+  .berita-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}

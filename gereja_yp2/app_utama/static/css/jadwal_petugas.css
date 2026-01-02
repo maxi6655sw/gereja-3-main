@@ -1,0 +1,31 @@
+.jadwal-petugas-container {
+  min-height: 75vh !important;
+  margin: 80px auto !important;
+  padding: 40px 20px !important;
+  text-align: center !important;
+  background-color: #f8f8f8 !important;
+}
+
+.jadwal_petugas-container h1 {
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 10px !important;
+  color: #000 !important;
+  letter-spacing: 2px !important;
+}
+
+.subtitle {
+  font-size: 1rem !important;
+  color: #999 !important;
+  font-style: italic !important;
+  margin-bottom: 20px !important;
+  font-weight: 300 !important;
+}
+
+.divider {
+  width: 100px !important;
+  height: 4px !important;
+  background-color: rgb(255, 196, 0) !important;
+  margin: 0 auto 60px !important;
+  border-radius: 2px !important;
+}

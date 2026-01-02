@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Kilas Berita{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/kilas_berita.css' %}?v=20241016-4">
+{% endblock %}
+
+{% block content %}
+<section class="gambar awal">
+  <img src="{% static 'img/header-atas.jpg' %}" alt="Gambar Header Atas">
+</section>
+
+<section class="kilas-berita-container">
+    <h1>BERITA TERKINI</h1>
+    <p class="subtitle">Jadilah bagian dari komunitas Gereja yang mengalami kehadiran Tuhan</p>
+    <hr class="divider">
+
+    <div class="berita-grid">
+        {% for b in berita_list %}
+        <div class="berita-card">
+            <div class="berita-image">
+                {% if b.gambar %}
+                <img src="{{ b.gambar.url }}" alt="{{ b.judul }}">
+                {% else %}
+                <img src="{% static 'img/default.jpg' %}" alt="Berita">
+                {% endif %}
+            </div>
+
+            <div class="berita-content">
+                <h2 class="judul">{{ b.judul|upper }}</h2>
+                <div class="meta">
+                    <p><i data-feather="user"></i> {{ b.penulis }}</p>
+                    <p><i data-feather="calendar"></i> {{ b.tanggal|date:"d M Y" }}</p>
+                </div>
+                <p class="ringkasan">{{ b.ringkasan|truncatechars:150 }}</p>
+                <a href="{% url 'detail_berita' slug=b.slug %}" class="btn-selengkapnya">Selanjutnya</a>
+            </div>
+        </div>
+        {% empty %}
+        <p class="no-berita">Belum ada berita yang tersedia.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

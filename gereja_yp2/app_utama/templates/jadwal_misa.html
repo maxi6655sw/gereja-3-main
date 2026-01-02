@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Jadwal Misa{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/jadwal_misa.css' %}?v=20241016-4">
+{% endblock %}
+
+{% block content %}
+<section class="gambar awal">
+  <img src="{% static 'img/header-atas.jpg' %}" alt="Gambar Header Atas">
+</section>
+
+<section class="jadwal_misa-container">
+  <h1>Jadwal Misa</h1>
+  <hr class="divider">
+
+  <div class="jadwal-wrapper">
+    {% for misa in jadwal %}
+    <div class="jadwal-card">
+      <div class="jadwal-image">
+        {% if misa.gambar %}
+          <img src="{{ misa.gambar.url }}" alt="{{ misa.nama_misa }}">
+        {% else %}
+          <img src="{% static 'img/default.jpg' %}" alt="Tidak ada gambar">
+        {% endif %}
+      </div>
+      <div class="jadwal-info">
+        <h2>{{ misa.nama_misa }}</h2>
+        <div class="jadwal-detail">
+          <p><strong>Hari:</strong> {{ misa.hari }}</p>
+          <p><strong>Waktu:</strong> {{ misa.waktu }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+
+{% endblock %}
