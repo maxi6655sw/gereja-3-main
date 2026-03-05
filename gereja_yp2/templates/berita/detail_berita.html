@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ berita.judul }} - Kilas Berita{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/detail_berita.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="gambar awal">
+  <img src="{% static 'img/header-atas.jpg' %}" alt="Gambar Header Atas">
+</section>
+
+<section class="berita-detail-container">
+
+  <div class="berita-header">
+    <h1>{{ berita.judul }}</h1>
+    <p class="berita-meta">
+      Dipublikasikan pada
+      <span>{{ berita.tanggal|date:"j F Y" }}</span>
+      oleh <strong>{{ berita.penulis }}</strong>
+    </p>
+  </div>
+
+  {% if berita.gambar %}
+  <div class="berita-image">
+    <img src="{{ berita.gambar.url }}" alt="{{ berita.judul }}">
+  </div>
+  {% endif %}
+
+  <div class="berita-content">
+    {{ berita.isi|linebreaks }}
+  </div>
+
+  <div class="berita-back">
+    <a href="{% url 'kilas_berita' %}" class="btn-back">
+      ← Kembali ke Kilas Berita
+    </a>
+  </div>
+
+</section>
+{% endblock %}

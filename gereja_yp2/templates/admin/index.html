@@ -1,0 +1,179 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block title %}Dashboard | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{# Load Font Awesome explicitly so icons render inside page content #}
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous"/>
+{% endblock %}
+
+{% block content_title %}<h1 class="db-page-title">Dashboard</h1>{% endblock %}
+
+{% block content %}
+<div class="db-root">
+
+  {# ── Welcome Strip ───────────────────────────────────────────────────── #}
+  <div class="db-welcome mb-4">
+    <div class="db-welcome-icon"><i class="fas fa-church fa-lg"></i></div>
+    <div>
+      <p class="db-welcome-title">Selamat datang, {{ request.user.get_full_name|default:request.user.username }}!</p>
+      <p class="db-welcome-sub">Panel administrasi Gereja Santo Yohanes Paulus II &mdash; kelola berita, kategori, dan jadwal misa dengan mudah.</p>
+    </div>
+  </div>
+
+  {# ── Stat Cards ─────────────────────────────────────────────────────── #}
+  <div class="db-grid-3 mb-4">
+    <div class="small-box bg-primary">
+      <div class="inner">
+        <h3>{{ total_berita }}</h3>
+        <p>Total Berita</p>
+      </div>
+      <div class="icon"><i class="fas fa-newspaper"></i></div>
+      <a href="{% url 'custom_admin:berita_berita_changelist' %}" class="small-box-footer">
+        Lihat Semua <i class="fas fa-arrow-circle-right"></i>
+      </a>
+    </div>
+    <div class="small-box bg-danger">
+      <div class="inner">
+        <h3>{{ total_kategori }}</h3>
+        <p>Total Kategori</p>
+      </div>
+      <div class="icon"><i class="fas fa-tags"></i></div>
+      <a href="{% url 'custom_admin:berita_kategori_changelist' %}" class="small-box-footer">
+        Lihat Semua <i class="fas fa-arrow-circle-right"></i>
+      </a>
+    </div>
+    <div class="small-box bg-info">
+      <div class="inner">
+        <h3>{{ total_jadwal_misa }}</h3>
+        <p>Total Jadwal Misa</p>
+      </div>
+      <div class="icon"><i class="fas fa-calendar-alt"></i></div>
+      <a href="{% url 'custom_admin:jadwal_jadwalmisa_changelist' %}" class="small-box-footer">
+        Lihat Semua <i class="fas fa-arrow-circle-right"></i>
+      </a>
+    </div>
+  </div>
+
+  {# ── Quick Actions ───────────────────────────────────────────────────── #}
+  <div class="db-card mb-4">
+    <div class="db-card-header">
+      <i class="fas fa-bolt db-card-icon"></i>
+      <span class="db-card-title">Aksi Cepat</span>
+    </div>
+    <div class="db-card-body">
+      <div class="db-grid-4">
+        <a href="{% url 'custom_admin:berita_berita_add' %}" class="qa-btn qa-btn-blue">
+          <i class="fas fa-plus-circle"></i>
+          <span>Tambah Berita</span>
+        </a>
+        <a href="{% url 'custom_admin:berita_kategori_add' %}" class="qa-btn qa-btn-green">
+          <i class="fas fa-folder-plus"></i>
+          <span>Tambah Kategori</span>
+        </a>
+        <a href="{% url 'custom_admin:jadwal_jadwalmisa_add' %}" class="qa-btn qa-btn-teal">
+          <i class="fas fa-calendar-plus"></i>
+          <span>Tambah Jadwal Misa</span>
+        </a>
+        <a href="{% url 'custom_admin:auth_user_changelist' %}" class="qa-btn qa-btn-purple">
+          <i class="fas fa-users-cog"></i>
+          <span>Kelola Pengguna</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {# ── Recent News + Chart ─────────────────────────────────────────────── #}
+  <div class="db-grid-news">
+
+    <div class="db-card">
+      <div class="db-card-header">
+        <i class="fas fa-newspaper db-card-icon"></i>
+        <span class="db-card-title">Berita Terbaru</span>
+        <a href="{% url 'custom_admin:berita_berita_add' %}" class="db-header-action">
+          <i class="fas fa-plus"></i> Tambah
+        </a>
+      </div>
+      <div class="db-table-wrap">
+        <table class="db-table">
+          <thead>
+            <tr>
+              <th>Judul</th>
+              <th>Kategori</th>
+              <th>Tanggal</th>
+              <th>Penulis</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for b in recent_berita %}
+            <tr>
+              <td>
+                <a class="db-link" href="{% url 'custom_admin:berita_berita_change' b.id %}">
+                  {{ b.judul|truncatechars:42 }}
+                </a>
+              </td>
+              <td><span class="db-badge">{{ b.kategori }}</span></td>
+              <td class="db-muted">{{ b.tanggal|date:"d M Y" }}</td>
+              <td class="db-muted">{{ b.penulis }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="4" class="db-empty">Belum ada berita.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="db-card-footer">
+        <a href="{% url 'custom_admin:berita_berita_changelist' %}" class="db-footer-btn">
+          Lihat Semua Berita
+        </a>
+      </div>
+    </div>
+
+    <div class="db-card">
+      <div class="db-card-header">
+        <i class="fas fa-chart-pie db-card-icon"></i>
+        <span class="db-card-title">Distribusi per Kategori</span>
+      </div>
+      <div class="db-card-body db-chart-wrap">
+        <canvas id="categoryChart"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3/dist/chart.min.js"></script>
+<script>
+(function () {
+  const data   = {{ category_data|safe }};
+  const colors = ['#007bff','#dc3545','#28a745','#ffc107','#17a2b8','#6f42c1','#fd7e14','#20c997'];
+  new Chart(document.getElementById('categoryChart'), {
+    type: 'doughnut',
+    data: {
+      labels: data.labels,
+      datasets: [{
+        data: data.data,
+        backgroundColor: colors.slice(0, data.labels.length),
+        borderWidth: 2,
+        borderColor: '#fff',
+      }],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { padding: 16, font: { size: 13, family: 'inherit' }, color: '#495057' },
+        },
+      },
+      animation: { animateScale: true },
+    },
+  });
+})();
+</script>
+{% endblock %}

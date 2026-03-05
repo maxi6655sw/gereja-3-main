@@ -1,0 +1,322 @@
+/* ==========================================================================
+   Gereja YP2 — Admin Custom CSS
+   Single source of truth for fonts, colours, spacing, and radius.
+   ========================================================================== */
+
+/* ── Design tokens ─────────────────────────────────────────────────────── */
+:root {
+  --c-text:        #343a40;   /* primary text                  */
+  --c-muted:       #6c757d;   /* secondary / meta text         */
+  --c-link:        #007bff;   /* links                         */
+  --c-border:      #dee2e6;   /* dividers / card borders       */
+  --c-bg-card:     #ffffff;   /* card background               */
+  --c-bg-head:     #f8f9fa;   /* card header / table head bg   */
+  --c-accent:      #007bff;   /* icon accent colour            */
+
+  --fs-base:       0.875rem;  /* 14 px — all body text         */
+  --fs-sm:         0.78rem;   /* 12.5 px — meta / badges       */
+  --fs-title:      0.9rem;    /* card section titles           */
+  --fw-normal:     400;
+  --fw-semi:       600;
+  --fw-bold:       700;
+
+  --radius:        10px;
+  --radius-sm:     6px;
+  --gap:           1.25rem;   /* gap between grid columns      */
+  --pad-card:      1rem 1.25rem;
+  --shadow:        0 2px 10px rgba(0,0,0,.07);
+  --shadow-hover:  0 6px 20px rgba(0,0,0,.13);
+}
+
+/* ── Root wrapper — inherits the admin font everywhere ─────────────────── */
+.db-root,
+.db-root * {
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+/* ── Page title ────────────────────────────────────────────────────────── */
+.db-page-title {
+  font-size: 1.3rem;
+  font-weight: var(--fw-bold);
+  color: var(--c-text);
+  margin: 0;
+}
+
+/* ── Spacing helper ────────────────────────────────────────────────────── */
+.mb-4 { margin-bottom: var(--gap) !important; }
+
+/* ── Grid layouts ──────────────────────────────────────────────────────── */
+.db-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+}
+.db-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+}
+.db-grid-news {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: var(--gap);
+}
+@media (max-width: 900px) {
+  .db-grid-3   { grid-template-columns: 1fr 1fr; }
+  .db-grid-4   { grid-template-columns: 1fr 1fr; }
+  .db-grid-news{ grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .db-grid-3   { grid-template-columns: 1fr; }
+}
+
+/* ── Welcome strip ─────────────────────────────────────────────────────── */
+.db-welcome {
+  display: flex;
+  align-items: center;
+  gap: 20px;                /* more breathing room between icon and text */
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  border-radius: var(--radius);
+  padding: 20px 28px;
+  color: #fff;
+}
+.db-welcome-icon {
+  font-size: 2rem;
+  opacity: .85;
+  flex-shrink: 0;
+  width: 48px;              /* fixed width keeps icon from hugging text */
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,.15);
+  border-radius: 50%;
+  text-align: center;
+}
+.db-welcome-title {
+  font-size: 1rem;
+  font-weight: var(--fw-bold);
+  color: #fff;
+  margin: 0 0 3px;
+  line-height: 1.3;
+}
+.db-welcome-sub {
+  font-size: var(--fs-base);
+  color: rgba(255,255,255,.85);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Stat cards (AdminLTE small-box) ───────────────────────────────────── */
+.small-box {
+  border-radius: var(--radius) !important;
+  overflow: hidden;
+  box-shadow: var(--shadow) !important;
+  transition: transform .18s, box-shadow .18s;
+  margin-bottom: 0 !important; /* grid handles spacing */
+}
+.small-box:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover) !important;
+}
+.small-box .inner h3 {
+  font-size: 2rem;
+  font-weight: var(--fw-bold);
+  color: #fff;
+}
+.small-box .inner p {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semi);
+  color: rgba(255,255,255,.9);
+}
+/* Pull the background icon away from the right edge so it doesn't clip */
+.small-box > .icon {
+  top: -5px !important;
+  right: 10px !important;
+  font-size: 50px !important;     /* smaller decorative watermark */
+  color: rgba(0, 0, 0, 0.15) !important;
+}
+.small-box-footer {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semi);
+}
+
+/* ── Card shell ────────────────────────────────────────────────────────── */
+.db-card {
+  background: var(--c-bg-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;   /* clips child borders to radius */
+}
+
+/* ── Card header — identical for every card ────────────────────────────── */
+.db-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--c-bg-head);
+  border-bottom: 1px solid var(--c-border);
+  padding: 11px 16px;
+}
+.db-card-icon {
+  font-size: .95rem;
+  color: var(--c-accent);
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.db-card-title {
+  font-size: var(--fs-title);
+  font-weight: var(--fw-bold);
+  color: var(--c-text);
+  flex: 1;
+  margin: 0;
+  line-height: 1;
+}
+/* Right-aligned action button in header */
+.db-header-action {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semi);
+  color: #fff;
+  background: #28a745;
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity .15s;
+}
+.db-header-action:hover { opacity: .85; color: #fff; text-decoration: none; }
+
+/* ── Card body ─────────────────────────────────────────────────────────── */
+.db-card-body {
+  padding: var(--pad-card);
+  flex: 1;
+}
+.db-chart-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  flex: 1;
+}
+
+/* ── Card footer ───────────────────────────────────────────────────────── */
+.db-card-footer {
+  background: var(--c-bg-head);
+  border-top: 1px solid var(--c-border);
+  padding: 10px 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+.db-footer-btn {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semi);
+  color: #fff;
+  background: var(--c-link);
+  border-radius: var(--radius-sm);
+  padding: 5px 14px;
+  text-decoration: none;
+  transition: opacity .15s;
+}
+.db-footer-btn:hover { opacity: .85; color: #fff; text-decoration: none; }
+
+/* ── Quick-action buttons ──────────────────────────────────────────────── */
+.qa-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 22px 12px;
+  border-radius: var(--radius);
+  text-align: center;
+  text-decoration: none !important;
+  transition: transform .15s, box-shadow .15s;
+  width: 100%;
+}
+.qa-btn i {
+  font-size: 1.6rem;
+  color: #fff;
+  line-height: 1;
+}
+.qa-btn span {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  color: #fff;
+  letter-spacing: .02em;
+  line-height: 1.3;
+}
+.qa-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.20);
+  text-decoration: none !important;
+}
+.qa-btn-blue   { background: linear-gradient(135deg, #007bff, #0056b3); }
+.qa-btn-green  { background: linear-gradient(135deg, #28a745, #19692c); }
+.qa-btn-teal   { background: linear-gradient(135deg, #17a2b8, #0f6674); }
+.qa-btn-purple { background: linear-gradient(135deg, #6f42c1, #4a2b8c); }
+
+/* ── Data table ────────────────────────────────────────────────────────── */
+.db-table-wrap { overflow-x: auto; flex: 1; }
+
+.db-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-base);
+  color: var(--c-text);
+}
+.db-table thead th {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  color: var(--c-muted);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  background: var(--c-bg-head);
+  border-bottom: 2px solid var(--c-border);
+  padding: 10px 16px;
+  white-space: nowrap;
+}
+.db-table tbody td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--c-border);
+  color: var(--c-text);
+  vertical-align: middle;
+  font-size: var(--fs-base);
+}
+.db-table tbody tr:last-child td { border-bottom: none; }
+.db-table tbody tr:hover td { background: rgba(0,123,255,.04); }
+
+.db-link {
+  font-weight: var(--fw-semi);
+  color: var(--c-link) !important;
+  text-decoration: none;
+}
+.db-link:hover { text-decoration: underline; }
+
+.db-muted {
+  color: var(--c-muted);
+  font-size: var(--fs-sm);
+  white-space: nowrap;
+}
+
+.db-badge {
+  display: inline-block;
+  background: var(--c-link);
+  color: #fff;
+  font-size: .72rem;
+  font-weight: var(--fw-bold);
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.db-empty {
+  text-align: center;
+  color: var(--c-muted);
+  font-size: var(--fs-base);
+  padding: 28px 16px !important;
+}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login - Gereja Santo Yohanes Paulus II{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}" />
+{% endblock %}
+
+{% block content %}
+<section id="login" class="login">
+  <div class="container">
+    <h2>Masuk ke Akun</h2>
+    <form method="post">
+      {% csrf_token %}
+      <label for="{{ form.username.id_for_label }}">
+        <i data-feather="user"></i> Username
+      </label>
+      <input
+        type="text"
+        name="{{ form.username.name }}"
+        id="{{ form.username.id_for_label }}"
+        placeholder="Masukkan username"
+        required
+      />
+
+      <label for="{{ form.password.id_for_label }}">
+        <i data-feather="lock"></i> Password
+      </label>
+      <input
+        type="password"
+        name="{{ form.password.name }}"
+        id="{{ form.password.id_for_label }}"
+        placeholder="Masukkan password"
+        required
+      />
+
+      {% if form.errors %}
+      <p class="error">Username atau password salah.</p>
+      {% endif %}
+
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</section>
+{% endblock %}
