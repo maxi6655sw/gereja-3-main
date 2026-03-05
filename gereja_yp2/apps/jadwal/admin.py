@@ -5,6 +5,19 @@ from config.admin_site import admin_site
 from .models import JadwalMisa
 from django import forms
 
+class JadwalMisaAdminForm(forms.ModelForm):
+    class Meta:
+        model = JadwalMisa
+        fields = '__all__'
+        widgets = {
+            'waktu': forms.TimeInput(
+                attrs={
+                    'type': 'time',
+                    'class': 'vTimeField',
+                    }, 
+                    format='%H:%M'
+                ),
+        }
 
 @admin.register(JadwalMisa, site=admin_site)
 class JadwalMisaAdmin(admin.ModelAdmin):
