@@ -3,10 +3,12 @@ from django.utils.html import format_html
 
 from config.admin_site import admin_site
 from .models import JadwalMisa
+from django import forms
 
 
 @admin.register(JadwalMisa, site=admin_site)
 class JadwalMisaAdmin(admin.ModelAdmin):
+    form = JadwalMisaAdminForm
     # ── List view ──────────────────────────────────────────────────────────
     list_display  = ('thumbnail', 'nama_misa', 'hari_format', 'waktu_format')
     list_display_links = ('thumbnail', 'nama_misa')
